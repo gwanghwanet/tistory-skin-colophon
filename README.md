@@ -62,9 +62,9 @@ python3 tools/build.py --preset presets/my-blog.json --out my-blog-colophon.zip
 - 스킨 편집에 값을 넣으면 그 값이 프리셋보다 먼저 쓰입니다.
 - 개인 정보가 든 프리셋은 공개 저장소에 올리지 마세요.
 
-## 수정·릴리즈
+## 문의·제안
 
-`skin/index.xml`의 버전을 올리고 `CHANGELOG.md`에 주요 수정 내용을 적어 `main`에 푸시하면, GitHub Actions가 태그와 릴리즈(zip 첨부)를 자동으로 만듭니다. 자세한 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md).
+버그 제보와 기능 제안은 [Issues](../../issues)로 받습니다. 풀 리퀘스트(코드 기여)는 받지 않으니, 고치고 싶은 점이 있으면 이슈로 남겨 주세요.
 
 ## 폴더 구조
 
@@ -73,7 +73,7 @@ skin/          스킨 원본 (skin.html, style.css, index.xml, images/script.js,
 presets/       프리셋 예시
 tools/build.py zip 빌드 (Python 3, 표준 라이브러리만)
 tools/release_notes.py  CHANGELOG에서 릴리즈 노트 꺼내기
-.github/workflows/release.yml  버전을 올려 푸시하면 태그·릴리즈 자동 생성
+.github/workflows/release.yml  릴리즈 자동 생성 (관리자용)
 ```
 
 ## 라이선스
