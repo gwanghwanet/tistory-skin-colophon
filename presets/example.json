@@ -1,0 +1,14 @@
+{
+  "$comment": "Colophon 프리셋 예시. 스킨 옵션이 비어 있을 때 대신 보일 값입니다. 필요한 키만 남기세요.",
+  "heroKicker": "Frontend · Backend · Tools · Essay",
+  "heroTitle": "읽고, 만들고, 남기는 웹 개발 기록",
+  "heroDesc": "CSS 레이아웃부터 자바스크립트, 작은 도구와 운영 이야기까지 직접 만들어 보며 정리합니다.",
+  "profileDesc": "읽고 만들고 기록합니다.",
+  "techStack": "HTML, CSS, JavaScript, Git",
+  "githubUrl": "https://github.com/your-name",
+  "contactEmail": "",
+  "footerText": "이 블로그의 글은 출처를 밝히면 자유롭게 공유할 수 있습니다.",
+  "copyrightStart": "2026",
+  "mastheadText": "Notes · Code · Essays",
+  "defaultTheme": "light"
+}

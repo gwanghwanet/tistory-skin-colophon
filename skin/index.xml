@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+  <information>
+    <name>Colophon</name>
+    <version>1.0.0</version>
+    <description><![CDATA[선으로 나눈 지면과 큰 회차 숫자, 본고딕으로 꾸민 에디토리얼 스킨. 긴 기술 글과 연재 글을 위한 자동 목차, 코드 하이라이트·복사, 표 가로 스크롤, 라이트/다크 모드를 지원합니다.]]></description>
+    <license><![CDATA[MIT License — https://github.com/gwanghwanet/tistory-skin-colophon]]></license>
+  </information>
+  <author>
+    <name>Gwanghwa.log</name>
+    <homepage>https://blog.gwanghwa.net</homepage>
+    <email></email>
+  </author>
+  <default>
+    <recentEntries>5</recentEntries>
+    <recentComments>5</recentComments>
+    <recentTrackbacks>5</recentTrackbacks>
+    <itemsOnGuestbook>10</itemsOnGuestbook>
+    <tagsInCloud>20</tagsInCloud>
+    <sortInCloud>3</sortInCloud>
+    <expandComment>1</expandComment>
+    <expandTrackback>0</expandTrackback>
+    <lengthOfRecentNotice>30</lengthOfRecentNotice>
+    <lengthOfRecentEntry>40</lengthOfRecentEntry>
+    <lengthOfRecentComment>40</lengthOfRecentComment>
+    <lengthOfRecentTrackback>30</lengthOfRecentTrackback>
+    <lengthOfLink>30</lengthOfLink>
+    <showListOnCategory>0</showListOnCategory>
+    <showListOnArchive>0</showListOnArchive>
+    <commentMessage>
+      <none>댓글이 없습니다.</none>
+      <single>댓글 1개</single>
+    </commentMessage>
+    <trackbackMessage>
+      <none>트랙백이 없습니다.</none>
+      <single>트랙백 1개</single>
+    </trackbackMessage>
+    <tree>
+      <color>333333</color>
+      <bgColor>ffffff</bgColor>
+      <activeColor>2f5bd3</activeColor>
+      <activeBgColor>f6f7f9</activeBgColor>
+      <labelLength>30</labelLength>
+      <showValue>1</showValue>
+    </tree>
+    <contentWidth>760</contentWidth>
+  </default>
+
+  <variables>
+    <variablegroup name="기본">
+      <variable>
+        <name>accentColor</name>
+        <label><![CDATA[강조 색상]]></label>
+        <description><![CDATA[Colophon은 테마별 강조색(라이트 #b5652a, 다크 #e0a36b)을 스킨이 정하므로 이 값은 쓰이지 않습니다. 색을 바꾸려면 style.css의 --ed-accent를 고치세요.]]></description>
+        <type>COLOR</type>
+        <option><![CDATA[]]></option>
+        <value>#b5652a</value>
+      </variable>
+      <variable>
+        <name>defaultTheme</name>
+        <label><![CDATA[기본 테마]]></label>
+        <description><![CDATA[방문자가 직접 바꾸기 전 적용되는 테마입니다.]]></description>
+        <type>SELECT</type>
+        <option><![CDATA[[{"name":"light","label":"라이트","value":"light"},{"name":"dark","label":"다크","value":"dark"},{"name":"system","label":"시스템 설정 따름","value":"system"}]]]></option>
+        <value>light</value>
+      </variable>
+      <variable>
+        <name>logo</name>
+        <label><![CDATA[로고 이미지]]></label>
+        <description><![CDATA[비워 두면 블로그 이름이 텍스트 로고로 표시됩니다.]]></description>
+        <type>IMAGE</type>
+        <option><![CDATA[]]></option>
+        <value></value>
+      </variable>
+    </variablegroup>
+
+    <variablegroup name="홈 소개">
+      <variable>
+        <name>heroKicker</name>
+        <label><![CDATA[소개 윗줄]]></label>
+        <description><![CDATA[홈 상단 작은 문구]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>heroTitle</name>
+        <label><![CDATA[소개 제목]]></label>
+        <description><![CDATA[홈 상단 큰 제목]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>heroDesc</name>
+        <label><![CDATA[소개 설명]]></label>
+        <description><![CDATA[홈 상단 설명 문장]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+    </variablegroup>
+
+    <variablegroup name="프로필">
+      <variable>
+        <name>profileDesc</name>
+        <label><![CDATA[한 줄 소개]]></label>
+        <description><![CDATA[사이드바와 글 하단 작성자 카드에 표시됩니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>techStack</name>
+        <label><![CDATA[기술 스택]]></label>
+        <description><![CDATA[쉼표(,)로 구분합니다. 프로필과 작성자 카드에 칩으로 표시됩니다. 비워 두면 숨깁니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>githubUrl</name>
+        <label><![CDATA[GitHub 주소]]></label>
+        <description><![CDATA[비워 두면 표시하지 않습니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>contactEmail</name>
+        <label><![CDATA[연락 이메일]]></label>
+        <description><![CDATA[비워 두면 표시하지 않습니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>footerText</name>
+        <label><![CDATA[푸터 문구]]></label>
+        <description><![CDATA[저작권 옆에 붙는 문구]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>copyrightStart</name>
+        <label><![CDATA[저작권 시작 연도]]></label>
+        <description><![CDATA[푸터의 "© 2024–올해"에서 앞 연도. 비우면 올해만 표시합니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+      <variable>
+        <name>mastheadText</name>
+        <label><![CDATA[호수 띠 문구]]></label>
+        <description><![CDATA[헤더 아래 띠 오른쪽에 보일 짧은 문구 (예: Java · Spring · Backend). 비우면 월·연도만 보입니다.]]></description>
+        <type>STRING</type>
+        <option><![CDATA[]]></option>
+        <value><![CDATA[]]></value>
+      </variable>
+    </variablegroup>
+
+    <variablegroup name="글 읽기">
+      <variable>
+        <name>showToc</name>
+        <label><![CDATA[자동 목차]]></label>
+        <description><![CDATA[소제목이 2개 이상인 글에 목차를 표시합니다.]]></description>
+        <type>SELECT</type>
+        <option><![CDATA[[{"name":"true","label":"표시","value":"true"},{"name":"false","label":"숨김","value":"false"}]]]></option>
+        <value>true</value>
+      </variable>
+      <variable>
+        <name>showProgress</name>
+        <label><![CDATA[읽기 진행 바]]></label>
+        <description><![CDATA[글 상단에 읽은 정도를 표시합니다.]]></description>
+        <type>SELECT</type>
+        <option><![CDATA[[{"name":"true","label":"표시","value":"true"},{"name":"false","label":"숨김","value":"false"}]]]></option>
+        <value>true</value>
+      </variable>
+      <variable>
+        <name>hideEmptyCategory</name>
+        <label><![CDATA[빈 카테고리 숨김]]></label>
+        <description><![CDATA[글이 0개인 카테고리를 메뉴에서 숨깁니다.]]></description>
+        <type>SELECT</type>
+        <option><![CDATA[[{"name":"true","label":"숨김","value":"true"},{"name":"false","label":"표시","value":"false"}]]]></option>
+        <value>true</value>
+      </variable>
+    </variablegroup>
+  </variables>
+</skin>
