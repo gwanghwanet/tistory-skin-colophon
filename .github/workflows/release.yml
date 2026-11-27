@@ -1,0 +1,70 @@
+# 버전을 올려 main에 푸시하면 태그와 릴리즈(zip 첨부)를 만든다
+# - 버전: skin/index.xml 의 <version>
+# - 릴리즈 노트: CHANGELOG.md 의 "## {버전} — {날짜}" 절 (없으면 실패)
+# - 이미 있는 버전이면 아무것도 하지 않는다. 태그가 main 기록 밖에 있으면(기록을 다시 쓴 경우) main으로 옮긴다
+name: release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 버전 읽기
+        id: v
+        run: |
+          VER=$(python3 -c "import re; print(re.search(r'<version>([^<]+)</version>', open('skin/index.xml', encoding='utf-8').read()).group(1).strip())")
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VER" >> "$GITHUB_OUTPUT"
+          echo "버전: $VER"
+
+      - name: 릴리즈 노트 (CHANGELOG)
+        run: python3 tools/release_notes.py "${{ steps.v.outputs.version }}" > notes.md
+
+      - name: 빌드
+        run: python3 tools/build.py
+
+      - name: 태그와 릴리즈
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.v.outputs.tag }}
+          VER: ${{ steps.v.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ZIP="dist/colophon-$VER.zip"
+          moved=0
+          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            if git merge-base --is-ancestor "$TAG" HEAD; then
+              echo "$TAG 은 이미 있습니다."
+              if [ -n "$(git diff --name-only "$TAG" HEAD -- skin tools/build.py)" ]; then
+                echo "::warning::스킨이 $TAG 이후 바뀌었지만 버전이 그대로입니다. skin/index.xml 의 버전과 CHANGELOG를 올려 주세요."
+              fi
+            else
+              echo "$TAG 이 main 기록에 없어 현재 main으로 옮깁니다."
+              git tag -f -a "$TAG" -m "Colophon $VER"
+              git push -f origin "refs/tags/$TAG"
+              moved=1
+            fi
+          else
+            git tag -a "$TAG" -m "Colophon $VER"
+            git push origin "refs/tags/$TAG"
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            if [ "$moved" = 1 ]; then
+              gh release edit "$TAG" --title "Colophon $VER" --notes-file notes.md
+              gh release upload "$TAG" "$ZIP" --clobber
+            fi
+          else
+            gh release create "$TAG" "$ZIP" --title "Colophon $VER" --notes-file notes.md --verify-tag
+          fi
